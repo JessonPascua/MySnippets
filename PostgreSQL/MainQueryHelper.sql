@@ -1,8 +1,8 @@
 -- GET ALL COLUMNS NAME IN ONE ROW
 SELECT string_agg(table_name || '.' || column_name, ', ')
 FROM information_schema.columns
-WHERE table_name = 'categories'
-  AND table_schema = 'manufacturing';	
+WHERE table_name = 'your_table'
+  AND table_schema = 'your_chema';	
 	
 SELECT *
 FROM manufacturing.products;
