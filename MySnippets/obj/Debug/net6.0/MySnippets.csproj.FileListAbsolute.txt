@@ -1,0 +1,14 @@
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\bin\Debug\net6.0\MySnippets.exe
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\bin\Debug\net6.0\MySnippets.deps.json
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\bin\Debug\net6.0\MySnippets.runtimeconfig.json
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\bin\Debug\net6.0\MySnippets.dll
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\bin\Debug\net6.0\MySnippets.pdb
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\MySnippets.GeneratedMSBuildEditorConfig.editorconfig
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\MySnippets.AssemblyInfoInputs.cache
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\MySnippets.AssemblyInfo.cs
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\MySnippets.csproj.CoreCompileInputs.cache
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\MySnippets.dll
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\refint\MySnippets.dll
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\MySnippets.pdb
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\MySnippets.genruntimeconfig.cache
+F:\OneDrive - EagleView\repos\sample\my\MySnippets\MySnippets\obj\Debug\net6.0\ref\MySnippets.dll
