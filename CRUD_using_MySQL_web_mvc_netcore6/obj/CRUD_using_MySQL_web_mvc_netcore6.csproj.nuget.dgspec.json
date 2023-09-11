@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj": {}
+    "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj": {}
   },
   "projects": {
-    "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj": {
+    "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj",
+        "projectUniqueName": "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj",
         "projectName": "CRUD_using_MySQL_web_mvc_netcore6",
-        "projectPath": "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj",
+        "projectPath": "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\CRUD_using_MySQL_web_mvc_netcore6.csproj",
         "packagesPath": "C:\\Users\\jesson.pascua\\.nuget\\packages\\",
-        "outputPath": "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\obj\\",
+        "outputPath": "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\CRUD_using_MySQL_web_mvc_netcore6\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jesson.pascua\\AppData\\Roaming\\NuGet\\NuGet.Config",
