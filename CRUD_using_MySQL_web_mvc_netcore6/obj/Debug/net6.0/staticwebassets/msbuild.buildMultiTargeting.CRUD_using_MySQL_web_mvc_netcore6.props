@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CRUD_using_MySQL_web_mvc_netcore6.props" />
+</Project>
