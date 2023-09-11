@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj": {}
+    "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj": {}
   },
   "projects": {
-    "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj": {
+    "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj",
+        "projectUniqueName": "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj",
         "projectName": "MySnippets",
-        "projectPath": "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj",
+        "projectPath": "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\MySnippets.csproj",
         "packagesPath": "C:\\Users\\jesson.pascua\\.nuget\\packages\\",
-        "outputPath": "F:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\obj\\",
+        "outputPath": "f:\\OneDrive - EagleView\\repos\\sample\\my\\MySnippets\\MySnippets\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jesson.pascua\\AppData\\Roaming\\NuGet\\NuGet.Config",
