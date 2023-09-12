@@ -18,7 +18,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6
 
         private static async Task SeedSpecialization(HealthCareDbContext dbContext)
         {
-            var specialties = new[] { "Internal medicine", "Pediatrics", "Obstetrics and gynaecology", "Orthopedics",
+            var specialties = new[] { "Internal medicine", "Pediatrics", "Gynaecology", "Orthopedics",
                                    "Psychiatry", "Pathology", "Urology", "Emergency medicine" , "General Surgery"};
             foreach (var skill in specialties)
             {
