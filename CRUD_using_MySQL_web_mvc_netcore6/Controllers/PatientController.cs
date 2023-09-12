@@ -7,90 +7,165 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CRUD_using_MySQL_web_mvc_netcore6.Data;
 using CRUD_using_MySQL_web_mvc_netcore6.Models;
+using CRUD_using_MySQL_web_mvc_netcore6.Models.Entities;
+using System.Globalization;
 
 namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
 {
     public class PatientController : Controller
     {
-        private readonly HealthCareDbContext _context;
+        private readonly HealthCareDbContext _healthCareDbContext;
+        private readonly List<Patients> _patients = new();
+        private readonly List<Physicians> _physicians = new();
+        private readonly List<PatientRecordViewModel> _patientRecordViewModel = new();
 
-        public PatientController(HealthCareDbContext context)
+        public PatientController(HealthCareDbContext healthCareDbContext)
         {
-            _context = context;
+            _healthCareDbContext = healthCareDbContext;
         }
 
         // GET: Patient
         public async Task<IActionResult> Index()
         {
-              return _context.PatientModel != null ? 
-                          View(await _context.PatientModel.ToListAsync()) :
-                          Problem("Entity set 'HealthCareDbContext.PatientModel'  is null.");
+            var patients = await _healthCareDbContext.Patients
+                .ToListAsync();
+
+            
+
+            foreach (var patient in patients)
+            {
+                var doctorId = patient.DoctorId;
+
+                var doctorNameQuery = _healthCareDbContext.Physicians.Where(x => x.DoctorId == doctorId).Select(u => u.DoctorFullName);
+
+                var doctorName = await doctorNameQuery.FirstOrDefaultAsync();
+
+                _patientRecordViewModel.Add(new PatientRecordViewModel     
+                 {
+                    Id = patient.Id,
+                    FristName = patient.FristName,
+                    LastName = patient.LastName,
+                    Address = patient.Address,
+                    DoctorName = doctorName,
+                    Schedule = patient.Schedule
+                });
+            }
+            return View(_patientRecordViewModel);
         }
 
         // GET: Patient/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.PatientModel == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var patientModel = await _context.PatientModel
+            var patient = await _healthCareDbContext.Patients
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (patientModel == null)
+
+            if (patient == null)
             {
                 return NotFound();
             }
 
-            return View(patientModel);
+            var doctorId = patient.DoctorId;
+            var doctorNameQuery = _healthCareDbContext.Physicians.Where(x => x.DoctorId == doctorId).Select(u => u.DoctorFullName);
+            var doctorName = await doctorNameQuery.FirstOrDefaultAsync();
+
+            var patientRecordViewModel = new PatientRecordViewModel
+            {
+                Id = patient.Id,
+                FristName = patient.FristName,
+                LastName = patient.LastName,
+                Address = patient.Address,
+                DoctorName = doctorName,
+                Schedule = patient.Schedule
+            };
+
+            return View(patientRecordViewModel);
         }
 
         // GET: Patient/Create
         public IActionResult Create()
         {
+            var doctors = _healthCareDbContext.Physicians.ToList();
+
+            // Create a SelectList to use in the dropdown list in the view
+            ViewBag.Doctors = new SelectList(doctors, "DoctorId", "DoctorFullName");
+
             return View();
         }
 
         // POST: Patient/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FristName,LastName,Address,AssignedDoctorId,Schedule")] PatientModel patientModel)
+        public async Task<IActionResult> Create([Bind("Id,FristName,LastName,Address,DoctorId,Schedule")] PatientRecordViewModel patientRecordViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(patientModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var newPatient = new Patients
+                {
+                    FristName = patientRecordViewModel.FristName,
+                    LastName = patientRecordViewModel.LastName,
+                    Address = patientRecordViewModel.Address,
+                    DoctorId = patientRecordViewModel.DoctorId,
+                    Schedule = patientRecordViewModel.Schedule
+                };
+
+                _healthCareDbContext.Patients.Add(newPatient);
+                await _healthCareDbContext.SaveChangesAsync();
+
+
+                return RedirectToAction("Index");
             }
-            return View(patientModel);
+
+            var doctors = _healthCareDbContext.Physicians.ToList();
+
+            ViewBag.Doctors = new SelectList(doctors, "DoctorId", "DoctorFullName");
+            return View(patientRecordViewModel);
         }
 
         // GET: Patient/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.PatientModel == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var patientModel = await _context.PatientModel.FindAsync(id);
-            if (patientModel == null)
+            var patient = await _healthCareDbContext.Patients
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (patient == null)
             {
                 return NotFound();
             }
-            return View(patientModel);
+
+            var patientRecordViewModel = new PatientRecordViewModel
+            {
+                Id = patient.Id,
+                FristName = patient.FristName,
+                LastName = patient.LastName,
+                Address = patient.Address,
+                DoctorId = patient.DoctorId, // Set the DoctorId property in the view model
+                Schedule = patient.Schedule,
+            };
+
+            var doctors = _healthCareDbContext.Physicians.ToList();
+            ViewBag.Doctors = new SelectList(doctors, "DoctorId", "DoctorFullName");
+
+            return View(patientRecordViewModel);
         }
 
         // POST: Patient/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FristName,LastName,Address,AssignedDoctorId,Schedule")] PatientModel patientModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FristName,LastName,Address,DoctorId,Schedule")] PatientRecordViewModel patientRecordViewModel)
         {
-            if (id != patientModel.Id)
+            if (id != patientRecordViewModel.Id)
             {
                 return NotFound();
             }
@@ -99,12 +174,29 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
             {
                 try
                 {
-                    _context.Update(patientModel);
-                    await _context.SaveChangesAsync();
+                    // Retrieve the existing patient record from the database
+                    var existingPatient = await _healthCareDbContext.Patients.FindAsync(id);
+
+                    if (existingPatient == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update the properties of the existing patient record
+                    existingPatient.FristName = patientRecordViewModel.FristName;
+                    existingPatient.LastName = patientRecordViewModel.LastName;
+                    existingPatient.Address = patientRecordViewModel.Address;
+                    existingPatient.DoctorId = patientRecordViewModel.DoctorId; // Update DoctorId
+                    existingPatient.Schedule = patientRecordViewModel.Schedule;
+
+                    // Mark the entity as modified
+                    _healthCareDbContext.Entry(existingPatient).State = EntityState.Modified;
+
+                    await _healthCareDbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PatientModelExists(patientModel.Id))
+                    if (!PatientRecordViewModelExists(patientRecordViewModel.Id))
                     {
                         return NotFound();
                     }
@@ -115,25 +207,42 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(patientModel);
+            return View(patientRecordViewModel);
         }
+
+
 
         // GET: Patient/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.PatientModel == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var patientModel = await _context.PatientModel
+            var patient = await _healthCareDbContext.Patients
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (patientModel == null)
+
+            if (patient == null)
             {
                 return NotFound();
             }
 
-            return View(patientModel);
+            var doctorId = patient.DoctorId;
+            var doctorNameQuery = _healthCareDbContext.Physicians.Where(x => x.DoctorId == doctorId).Select(u => u.DoctorFullName);
+            var doctorName = await doctorNameQuery.FirstOrDefaultAsync();
+
+            var patientRecordViewModel = new PatientRecordViewModel
+            {
+                Id = patient.Id,
+                FristName = patient.FristName,
+                LastName = patient.LastName,
+                Address = patient.Address,
+                DoctorName = doctorName,
+                Schedule = patient.Schedule
+            };
+
+            return View(patientRecordViewModel);
         }
 
         // POST: Patient/Delete/5
@@ -141,23 +250,24 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.PatientModel == null)
+            if (_healthCareDbContext.Patients == null)
             {
-                return Problem("Entity set 'HealthCareDbContext.PatientModel'  is null.");
+                return Problem("Entity set 'HealthCareDbContext.Patients' is null.");
             }
-            var patientModel = await _context.PatientModel.FindAsync(id);
-            if (patientModel != null)
+
+            var patient = await _healthCareDbContext.Patients.FindAsync(id);
+            if (patient != null)
             {
-                _context.PatientModel.Remove(patientModel);
+                _healthCareDbContext.Patients.Remove(patient);
+                await _healthCareDbContext.SaveChangesAsync();
             }
-            
-            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PatientModelExists(int id)
+        private bool PatientRecordViewModelExists(int id)
         {
-          return (_context.PatientModel?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _healthCareDbContext.Patients.Any(e => e.Id == id);
         }
     }
 }

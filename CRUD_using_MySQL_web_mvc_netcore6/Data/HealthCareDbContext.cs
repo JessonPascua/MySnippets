@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CRUD_using_MySQL_web_mvc_netcore6.Models.Entities;
 using CRUD_using_MySQL_web_mvc_netcore6.Models;
 
 namespace CRUD_using_MySQL_web_mvc_netcore6.Data
@@ -14,6 +15,12 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Data
         {
         }
 
-        public DbSet<CRUD_using_MySQL_web_mvc_netcore6.Models.PatientModel> PatientModel { get; set; } = default!;
+        public DbSet<Patients> Patients { get; set; } = default!;
+        public DbSet<Physicians> Physicians { get; set; } = default!;
+        public DbSet<Specializations> Specializations { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

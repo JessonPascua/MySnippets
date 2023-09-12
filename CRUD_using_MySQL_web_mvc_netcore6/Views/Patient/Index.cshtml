@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CRUD_using_MySQL_web_mvc_netcore6.Models.PatientModel>
+﻿@model IEnumerable<PatientRecordViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FristName)
             </th>
             <th>
@@ -22,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AssignedDoctorId)
+                @Html.DisplayNameFor(model => model.DoctorName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Schedule)
@@ -33,6 +36,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FristName)
             </td>
@@ -43,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AssignedDoctorId)
+                @Html.DisplayFor(modelItem => item.DoctorName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Schedule)
