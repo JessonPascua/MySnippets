@@ -38,6 +38,6 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Models.Entities
 
 
         [ForeignKey("DoctorId")]
-        public virtual Physicians Physician2 { get; set; } = null!;
+        public virtual Physicians Physician { get; set; } = null!;
     }
 }

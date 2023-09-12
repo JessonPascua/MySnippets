@@ -28,9 +28,9 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
         public async Task<IActionResult> Index()
         {
             var patients = await _healthCareDbContext.Patients
-                .ToListAsync();
-
-            
+                 .Include(p => p.Physician) 
+                 .ThenInclude(p => p.Specialization) 
+                 .ToListAsync();
 
             foreach (var patient in patients)
             {
@@ -47,6 +47,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                     LastName = patient.LastName,
                     Address = patient.Address,
                     DoctorName = doctorName,
+                    Type = patient.Physician.Specialization.Type,
                     Schedule = patient.Schedule
                 });
             }

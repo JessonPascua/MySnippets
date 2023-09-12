@@ -8,7 +8,7 @@
         public string? Address { get; set; }
         public string? DoctorName { get; set; }
         public int DoctorId { get; set; }
-        public int? AssignedDoctorId { get; set; }
+        public string? Type { get; set; }
         public DateTime Schedule { get; set; }
     }
 }
