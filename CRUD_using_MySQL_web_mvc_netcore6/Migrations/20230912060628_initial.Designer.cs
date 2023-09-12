@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
 {
     [DbContext(typeof(HealthCareDbContext))]
-    [Migration("20230912013946_initial")]
+    [Migration("20230912060628_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
