@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
 {
     [DbContext(typeof(HealthCareDbContext))]
-    [Migration("20230912060628_initial")]
-    partial class initial
+    [Migration("20230912230928_InitialCommit")]
+    partial class InitialCommit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
 
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("DATETIME");
+
                     b.Property<int>("DoctorId")
                         .HasColumnType("INT");
 
@@ -41,9 +44,6 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
-
-                    b.Property<DateTime>("Schedule")
-                        .HasColumnType("DATETIME");
 
                     b.HasKey("Id");
 

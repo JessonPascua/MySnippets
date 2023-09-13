@@ -48,7 +48,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                     Address = patient.Address,
                     DoctorName = doctorName,
                     Type = patient.Physician.Specialization.Type,
-                    Schedule = patient.Schedule
+                    Schedule = patient.AppointmentDate
                 });
             }
             return View(_patientRecordViewModel);
@@ -81,7 +81,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                 LastName = patient.LastName,
                 Address = patient.Address,
                 DoctorName = doctorName,
-                Schedule = patient.Schedule
+                Schedule = patient.AppointmentDate
             };
 
             return View(patientRecordViewModel);
@@ -102,7 +102,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FristName,LastName,Address,DoctorId,Schedule")] PatientRecordViewModel patientRecordViewModel)
+        public async Task<IActionResult> Create([Bind("Id,FristName,LastName,Address,DoctorId,AppointmentDate")] PatientRecordViewModel patientRecordViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +112,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                     LastName = patientRecordViewModel.LastName,
                     Address = patientRecordViewModel.Address,
                     DoctorId = patientRecordViewModel.DoctorId,
-                    Schedule = patientRecordViewModel.Schedule
+                    AppointmentDate = patientRecordViewModel.Schedule
                 };
 
                 _healthCareDbContext.Patients.Add(newPatient);
@@ -151,7 +151,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                 LastName = patient.LastName,
                 Address = patient.Address,
                 DoctorId = patient.DoctorId, // Set the DoctorId property in the view model
-                Schedule = patient.Schedule,
+                Schedule = patient.AppointmentDate,
             };
 
             var doctors = _healthCareDbContext.Physicians.ToList();
@@ -164,7 +164,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FristName,LastName,Address,DoctorId,Schedule")] PatientRecordViewModel patientRecordViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FristName,LastName,Address,DoctorId,AppointmentDate")] PatientRecordViewModel patientRecordViewModel)
         {
             if (id != patientRecordViewModel.Id)
             {
@@ -188,7 +188,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                     existingPatient.LastName = patientRecordViewModel.LastName;
                     existingPatient.Address = patientRecordViewModel.Address;
                     existingPatient.DoctorId = patientRecordViewModel.DoctorId; // Update DoctorId
-                    existingPatient.Schedule = patientRecordViewModel.Schedule;
+                    existingPatient.AppointmentDate = patientRecordViewModel.Schedule;
 
                     // Mark the entity as modified
                     _healthCareDbContext.Entry(existingPatient).State = EntityState.Modified;
@@ -240,7 +240,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Controllers
                 LastName = patient.LastName,
                 Address = patient.Address,
                 DoctorName = doctorName,
-                Schedule = patient.Schedule
+                Schedule = patient.AppointmentDate
             };
 
             return View(patientRecordViewModel);

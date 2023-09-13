@@ -29,6 +29,9 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
 
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("DATETIME");
+
                     b.Property<int>("DoctorId")
                         .HasColumnType("INT");
 
@@ -39,9 +42,6 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
-
-                    b.Property<DateTime>("Schedule")
-                        .HasColumnType("DATETIME");
 
                     b.HasKey("Id");
 

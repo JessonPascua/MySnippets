@@ -34,8 +34,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Models.Entities
         [Required]
         [PersonalData]
         [Column(TypeName = "DATETIME")]
-        public DateTime Schedule { get; set; }
-
+        public DateTime AppointmentDate { get; set; }
 
         [ForeignKey("DoctorId")]
         public virtual Physicians Physician { get; set; } = null!;

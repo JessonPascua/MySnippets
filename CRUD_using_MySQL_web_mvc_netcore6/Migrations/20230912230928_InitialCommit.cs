@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialCommit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,7 +66,7 @@ namespace CRUD_using_MySQL_web_mvc_netcore6.Migrations
                     Address = table.Column<string>(type: "VARCHAR(100)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DoctorId = table.Column<int>(type: "INT", nullable: false),
-                    Schedule = table.Column<DateTime>(type: "DATETIME", nullable: false)
+                    AppointmentDate = table.Column<DateTime>(type: "DATETIME", nullable: false)
                 },
                 constraints: table =>
                 {
